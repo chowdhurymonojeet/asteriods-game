@@ -43,7 +43,7 @@ def main():
             for shot in shots:
                 if asteriod.collides_with(player):
                     shot.kill()
-                    asteriod.kill()
+                    asteriod.split()
 
         screen.fill("black")
         
