@@ -4,6 +4,7 @@ from constants import *
 from player import Player
 from asteriod import Asteriod
 from asteriodfield import AsteroidField
+from shot import Shot
 
 def main():
 
@@ -14,8 +15,10 @@ def main():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteriods = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
 
     Asteriod.containers = (asteriods, updatable, drawable)
+    Shot.containers = (shots, updatable, drawable)
     AsteroidField.containers = updatable
     asteriods_field = AsteroidField()
 
@@ -36,6 +39,11 @@ def main():
             if asteriod.collides_with(player):
                 print("Game Over")
                 sys.exit()
+
+            for shot in shots:
+                if asteriod.collides_with(player):
+                    shot.kill()
+                    asteriod.kill()
 
         screen.fill("black")
         
